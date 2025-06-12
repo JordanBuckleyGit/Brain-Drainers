@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import Topbar from "./topbar";
+import React, { useState,useEffect } from "react";
+import Topbar from "./Navigation";
+import Loader from "./Loader";
 import { Line } from "react-chartjs-2";
 import { Chart, LineElement, CategoryScale, LinearScale, PointElement } from "chart.js";
 
 Chart.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 export default function MainPage() {
-  const [mode, setMode] = useState("ask"); // "ask", "timeline", "sessions"
+  const [mode, setMode] = useState("ask");
+  const [loading, setLoading] = useState(true);
 
-  // Example data for Chart.js
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1500);
+  }, []);
+
+    if (loading) {
+    return <Loader />;
+  }
+
   const chartData = {
     labels: ["Start", "10m", "20m", "30m", "40m", "50m", "End"],
     datasets: [
