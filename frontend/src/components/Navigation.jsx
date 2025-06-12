@@ -86,7 +86,32 @@ function Topbar() {
             </div>
             <nav className="flex-1 overflow-y-auto font-roboto">
               <ul className="p-4 space-y-2 font-roboto">
-                {/* ...your nav items... */}
+                <li>
+                  <a href="#" className="block px-4 py-2 rounded hover:bg-[#21262d] transition">Profile</a>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 rounded hover:bg-[#21262d] transition">My Sessions</a>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 rounded hover:bg-[#21262d] transition">Friends</a>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 rounded hover:bg-[#21262d] transition">Group Study</a>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-2 rounded bg-red-600 hover:bg-red-700 transition font-bold mt-4"
+                    onClick={async () => {
+                      await fetch("http://localhost:5000/api/logout", {
+                        method: "POST",
+                        credentials: "include",
+                      });
+                      window.location.href = "/login";
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
               </ul>
             </nav>
           </motion.aside>

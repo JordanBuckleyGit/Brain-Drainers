@@ -8,12 +8,15 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://localhost:3000"])
 app.teardown_appcontext(close_db)
 
-# Session configuration
 app.config["SECRET_KEY"] = "jordansPw"
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+
+#########################
+# Login Stuff
+#########################
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.json
@@ -42,9 +45,20 @@ def login():
         return jsonify({"message": "Login successful!"}), 200
     return jsonify({"message": "Invalid credentials."}), 401
 
+@app.route('/api/logout', methods=['POST'])
+def logout():
+    session.clear()
+    resp = jsonify({"message": "Logged out"})
+    resp.set_cookie('session', '', expires=0)
+    return resp
+
+######################################
+# Db fetches
+######################################
+
 @app.route('/api/user', methods=['GET'])
 def get_user():
-    print("Session user_id:", session.get('user_id'))  # Add this line
+    print("Session user_id:", session.get('user_id'))
     user_id = session.get('user_id')
     if not user_id:
         return jsonify({"username": None}), 401
