@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import Topbar from "./Navigation";
 import Loader from "./Loader";
+import Footer from "./Footer";
 import { Line } from "react-chartjs-2";
 import { Chart, LineElement, CategoryScale, LinearScale, PointElement } from "chart.js";
 
@@ -104,6 +105,7 @@ export default function MainPage() {
           )}
         </div>
       </div>
+          <Footer/>
     </div>
   );
 }
