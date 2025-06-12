@@ -1,0 +1,18 @@
+# Node.js (frontend)
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# Python (backend)
+backend/__pycache__/
+backend/*.pyc
+backend/env/
+backend/.env
+
+# General
+.DS_Store
+.env
+*.log
+
+# VS Code settings
+.vscode/
