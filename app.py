@@ -48,7 +48,7 @@ def register():
                 (username, generate_password_hash(password)))
             db.commit()
             return redirect( url_for('login'))
-        return render_template('register.html',form=form)
+    return render_template('register.html',form=form)
     
 @app.route('/login', methods=['GET','POST'])
 def login():
